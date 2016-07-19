@@ -9,6 +9,7 @@
     <script src="three.min.js"></script> <!-- Three.js を取得 -->
     <script>
       var scene = new THREE.Scene(); // Three.js シーンオブジェクトの生成
+      var scene2 = new THREE.Scene();
       var width = window.innerWidth;//表示領域の大きさを取得
       var height = window.innerHeight;
       
@@ -60,6 +61,16 @@
           scene.add(mesh); // シーンに配置
         }
       }
+      for(var x = -1; x <= 1; x++){// 横に三個ずつ
+        for(var z = 0; z < 3; z++){// 奥に三個ずつ
+          var material = new THREE.MeshLambertMaterial( { color: Math.floor( Math.random() * 0xffffff ) } ) // マテリアルの作成(乱数)
+          var mesh = new THREE.Mesh(geometry, material); // メッシュとマテリアルからオブジェクトを生成
+          mesh.position.x = -x * 500;// 並べて配置
+          mesh.position.z = -z * 2;
+          meshes[idx++] = mesh;// 配列に格納
+          scene2.add(mesh); // シーンに配置
+        }
+      }
       function updateSize() {
         // ブラウザのサイズを変えたときの処理
         if ( width != window.innerWidth || height != window.innerHeight ) {
@@ -99,6 +110,7 @@
            camera.aspect = width / height;// 描画領域が半分になることのアスペクト比の対応
            camera.updateProjectionMatrix();// 射影行列を更新
           renderer.render( scene, camera ); // 物体を描画
+          renderer.render( scene2,camera);
         }
       })();// 定義してそのまま起動
     </script>
