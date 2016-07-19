@@ -55,7 +55,7 @@
         for(var z = 0; z < 3; z++){// 奥に三個ずつ
           var material = new THREE.MeshLambertMaterial( { color: Math.floor( Math.random() * 0xffffff ) } ) // マテリアルの作成(乱数)
           var mesh = new THREE.Mesh(geometry, material); // メッシュとマテリアルからオブジェクトを生成
-          mesh.position.x = x * 500;// 並べて配置
+          mesh.position.x = x * 2;// 並べて配置
           mesh.position.z = -z * 2;
           meshes[idx++] = mesh;// 配列に格納
           scene.add(mesh); // シーンに配置
@@ -65,7 +65,7 @@
         for(var z = 0; z < 3; z++){// 奥に三個ずつ
           var material = new THREE.MeshLambertMaterial( { color: Math.floor( Math.random() * 0xffffff ) } ) // マテリアルの作成(乱数)
           var mesh = new THREE.Mesh(geometry, material); // メッシュとマテリアルからオブジェクトを生成
-          mesh.position.x = -x * 500;// 並べて配置
+          mesh.position.x = x * -2;// 並べて配置
           mesh.position.z = -z * 2;
           meshes[idx++] = mesh;// 配列に格納
           scene2.add(mesh); // シーンに配置
@@ -110,7 +110,6 @@
            camera.aspect = width / height;// 描画領域が半分になることのアスペクト比の対応
            camera.updateProjectionMatrix();// 射影行列を更新
           renderer.render( scene, camera ); // 物体を描画
-          renderer.render( scene2,camera);
         }
       })();// 定義してそのまま起動
     </script>
